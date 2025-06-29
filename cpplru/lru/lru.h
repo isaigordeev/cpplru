@@ -2,7 +2,40 @@
 // Created by Isai Gordeev on 29/06/2025.
 //
 
-#ifndef CPPLRU_LRU_LRU_H_
-#define CPPLRU_LRU_LRU_H_
+#pragma once
 
-#endif //CPPLRU_LRU_LRU_H_
+#include "chain.h"
+#include "hash.h"
+#include <memory>
+
+constexpr int HASH_CAPACITY = 100;
+constexpr int CHAIN_CAPACITY = 100;
+
+struct LRUConfig
+{
+    int hash_capacity = HASH_CAPACITY;
+    int chain_capacity = CHAIN_CAPACITY;
+};
+
+template <typename K> class LRU
+{
+  private:
+    LRUConfig lruConfig;
+    std::unique_ptr<LRUHashTable<K>> lruHashTable;
+    std::unique_ptr<LRUCacheChain<K>> lruChain;
+
+  public:
+    LRU()
+        : lruConfig(LRUConfig{}),
+          lruHashTable(
+                  std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
+          lruChain(std::make_unique<LRUCacheChain<K>>(
+                  lruConfig.chain_capacity)){};
+
+    explicit LRU(const LRUConfig& lruConfig)
+        : lruConfig(lruConfig),
+          lruHashTable(
+                  std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
+          lruChain(std::make_unique<LRUCacheChain<K>>(
+                  lruConfig.chain_capacity)){};
+};

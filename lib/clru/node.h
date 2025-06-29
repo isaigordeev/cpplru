@@ -7,15 +7,17 @@
 
 #include "stdlib.h"
 
-typedef struct Node {
-  int key;
-  int value;
-  struct Node *prev;
-  struct Node *next;
-  struct Node *bucket_next;
+typedef struct Node
+{
+    int key;
+    int value;
+    struct Node* prev;
+    struct Node* next;
+    struct Node* bucket_next;
 } Node;
 
-Node *createNode(int key, int value, struct Node *bucket_node, struct Node *prev, struct Node *next);
-void freeNode(Node *node);
+Node* createNode(int key, int value, struct Node* bucket_node,
+        struct Node* prev, struct Node* next);
+void freeNode(Node* node);
 
-#endif //LRU_NODE_H
+#endif // LRU_NODE_H

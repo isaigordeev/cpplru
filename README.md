@@ -1,6 +1,5 @@
 # cpplru
 
-
 ## step 1
 
 create C extern run time
@@ -13,13 +12,13 @@ proper cpp style for the pb - replica
 
 better hash table
 
-## step 4 
+## step 4
 
 thread safety
 
 ## step 5
 
-lock-free concurency 
+lock-free concurency
 custom memory pools or arena allocators
 
 ## step 6

@@ -17,13 +17,13 @@ HeaderFilterRegex: '.*'
 AnalyzeTemporaryDtors: true
 FormatStyle: file
 CheckOptions:
-  - key:             modernize-use-auto.MinTypeNameLength
-    value:           '0'
-  - key:             modernize-use-nullptr.NullMacros
-    value:           'NULL'
-  - key:             readability-identifier-naming.IgnoreMainLikeFunctions
-    value:           '1'
-  - key:             cppcoreguidelines-pro-type-cstyle-cast.WarnOnCastAlign
-    value:           '1'
-  - key:             cppcoreguidelines-no-malloc.AllocFunctions
-    value:           'malloc;calloc;realloc;strdup'
+  - key: modernize-use-auto.MinTypeNameLength
+    value: '0'
+  - key: modernize-use-nullptr.NullMacros
+    value: 'NULL'
+  - key: readability-identifier-naming.IgnoreMainLikeFunctions
+    value: '1'
+  - key: cppcoreguidelines-pro-type-cstyle-cast.WarnOnCastAlign
+    value: '1'
+  - key: cppcoreguidelines-no-malloc.AllocFunctions
+    value: 'malloc;calloc;realloc;strdup'

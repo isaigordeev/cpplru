@@ -3,9 +3,3 @@
 //
 
 #include "node.h"
-
-template <typename K>
-const K& PrimitiveNode<K>::get_value() const
-{
-    return value;
-}

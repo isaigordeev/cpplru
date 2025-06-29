@@ -5,16 +5,19 @@
 #pragma once
 
 #include "node.h"
-constexpr int DEFAULT_CAPACITY=1000;
+constexpr int DEFAULT_CAPACITY = 1000;
 
-template<typename K>
-class LRUCacheChain {
-public:
-	explicit LRUCacheChain<K>(int capacity = DEFAULT_CAPACITY);
-private:
-	int size = 0;
-	int capacity = DEFAULT_CAPACITY;
+template <typename K> class LRUCacheChain
+{
+  public:
+    explicit LRUCacheChain<K>(int capacity = DEFAULT_CAPACITY)
+        : chain_capacity(capacity){};
 
-	std::shared_ptr<PrimitiveNode<K>> head;  // Most recently used (MRU) sentinel
-	std::shared_ptr<PrimitiveNode<K>> tail;  // Least recently used (LRU) sentinel
+  private:
+    int size = 0;
+    int chain_capacity = DEFAULT_CAPACITY;
+
+    std::shared_ptr<PrimitiveNode<K>> head; // Most recently used (MRU) sentinel
+    std::shared_ptr<PrimitiveNode<K>>
+            tail; // Least recently used (LRU) sentinel
 };

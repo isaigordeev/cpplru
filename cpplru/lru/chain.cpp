@@ -4,12 +4,12 @@
 
 #include "chain.h"
 
-template<typename K>
+template <typename K>
 LRUCacheChain<K>::LRUCacheChain(int capacity)
-		: capacity(capacity),
-		  head(std::make_shared<PrimitiveNode<K>>(K{})),
-		  tail(std::make_shared<PrimitiveNode<K>>(K{}))
+    : capacity(capacity),
+      head(std::make_shared<PrimitiveNode<K>>(K{})),
+      tail(std::make_shared<PrimitiveNode<K>>(K{}))
 {
-	head->next = tail;
-	tail->prev = head;
+    head->next = tail;
+    tail->prev = head;
 }

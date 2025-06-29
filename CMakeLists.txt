@@ -17,10 +17,10 @@ set(CMAKE_OSX_SYSROOT ${MACOS_SDK_PATH})
 # Add include directories
 
 option(BUILD_TESTING "Build tests" ON)
-if(BUILD_TESTING)
+if (BUILD_TESTING)
     enable_testing()
     add_subdirectory(tests)
-endif()
+endif ()
 
 # === Executable for testing C version ===
 set(SOURCES_C

@@ -16,7 +16,6 @@ set(CMAKE_OSX_SYSROOT ${MACOS_SDK_PATH})
 
 # Add include directories
 
-
 option(BUILD_TESTING "Build tests" ON)
 if(BUILD_TESTING)
     enable_testing()
@@ -36,6 +35,11 @@ set(TEST_C_CPP
         )
 
 add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
+
+target_include_directories(clru_test PRIVATE
+        ${CMAKE_SOURCE_DIR}/lib/clru
+        )
+
 target_compile_options(clru_test PRIVATE -fsanitize=address -g)
 target_link_options(clru_test PRIVATE -fsanitize=address)
 
@@ -52,7 +56,7 @@ set(TEST_CPP
 add_executable(cpplru ${CPP_LRU} ${TEST_CPP})
 
 target_include_directories(cpplru PRIVATE
-        ${CMAKE_SOURCE_DIR}/lib/clru
+        ${CMAKE_SOURCE_DIR}/cpplru/lru
         )
 
 target_compile_options(cpplru PRIVATE -fsanitize=address -g)

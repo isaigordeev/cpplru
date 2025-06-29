@@ -25,7 +25,7 @@ template <typename K> class LRU
     std::unique_ptr<LRUCacheChain<K>> lruChain;
 
   public:
-    LRU()
+    explicit LRU()
         : lruConfig(LRUConfig{}),
           lruHashTable(
                   std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
@@ -38,4 +38,15 @@ template <typename K> class LRU
                   std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
           lruChain(std::make_unique<LRUCacheChain<K>>(
                   lruConfig.chain_capacity)){};
+
+    void put(const std::shared_ptr<PrimitiveNode<K>>& node)
+    {
+        lruHashTable->put(node);
+        lruChain->put(node);
+    }
+
+    std::shared_ptr<PrimitiveNode<K>> get_head() const
+    {
+        return lruChain->get_head();
+    }
 };

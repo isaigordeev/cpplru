@@ -15,18 +15,24 @@ execute_process(
 set(CMAKE_OSX_SYSROOT ${MACOS_SDK_PATH})
 
 # Add include directories
-include_directories(${CMAKE_SOURCE_DIR}/clru)
+
+
+option(BUILD_TESTING "Build tests" ON)
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
 
 # === Executable for testing C version ===
 set(SOURCES_C
-        clru/lru.c
-        clru/hash.c
-        clru/chain.c
-        clru/node.c
+        lib/clru/lru.c
+        lib/clru/hash.c
+        lib/clru/chain.c
+        lib/clru/node.c
         )
 
 set(TEST_C_CPP
-        tests/c_main.cpp  # C++ test that uses C implementation
+        tests/tests_c_legacy_main.cpp  # C++ test that uses C implementation
         )
 
 add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
@@ -36,13 +42,18 @@ target_link_options(clru_test PRIVATE -fsanitize=address)
 
 # === Executable for testing C++ version ===
 set(CPP_LRU
-        lru/lru.cpp     # Your C++ implementation of LRU
-        )
+        cpplru/lru/lru.cpp     # Your C++ implementation of LRU
+        cpplru/lru/chain.cpp cpplru/lru/chain.h cpplru/lru/hash.cpp cpplru/lru/hash.h cpplru/lru/node.cpp cpplru/lru/node.h)
 
 set(TEST_CPP
-        tests/cpp_main.cpp # Your C++ test for the C++ LRU
+        tests/tests_main.cpp # Your C++ test for the C++ LRU
         )
 
-add_executable(cpplru_test ${CPP_LRU} ${TEST_CPP})
-target_compile_options(cpplru_test PRIVATE -fsanitize=address -g)
-target_link_options(cpplru_test PRIVATE -fsanitize=address)
+add_executable(cpplru ${CPP_LRU} ${TEST_CPP})
+
+target_include_directories(cpplru PRIVATE
+        ${CMAKE_SOURCE_DIR}/lib/clru
+        )
+
+target_compile_options(cpplru PRIVATE -fsanitize=address -g)
+target_link_options(cpplru PRIVATE -fsanitize=address)

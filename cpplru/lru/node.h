@@ -5,17 +5,18 @@
 
 #include <memory>
 
-template<typename K, typename V>
-
+template<typename K>
 struct PrimitiveNode {
   K key;
-  V value;
+  int value;
 
   std::shared_ptr<PrimitiveNode>(next);
   std::weak_ptr<PrimitiveNode>(prev);
 
   std::shared_ptr<PrimitiveNode>(bucket_next);
 
-  PrimitiveNode(const K& key, const V& value):key(key), value(value), next(nullptr), prev(), bucket_next(nullptr){
+  explicit PrimitiveNode(const K& key):key(key), value(value), next(nullptr), prev(), bucket_next(nullptr){
   }
+
+  const K& get_value() const;
 };

@@ -1,0 +1,29 @@
+Checks: >
+  clang-analyzer-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  bugprone-*,
+  cppcoreguidelines-*,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-pro-type-vararg,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+
+AnalyzeTemporaryDtors: true
+FormatStyle: file
+CheckOptions:
+  - key:             modernize-use-auto.MinTypeNameLength
+    value:           '0'
+  - key:             modernize-use-nullptr.NullMacros
+    value:           'NULL'
+  - key:             readability-identifier-naming.IgnoreMainLikeFunctions
+    value:           '1'
+  - key:             cppcoreguidelines-pro-type-cstyle-cast.WarnOnCastAlign
+    value:           '1'
+  - key:             cppcoreguidelines-no-malloc.AllocFunctions
+    value:           'malloc;calloc;realloc;strdup'

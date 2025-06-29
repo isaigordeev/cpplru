@@ -2,7 +2,23 @@
 // Created by Isai Gordeev on 29/06/2025.
 //
 
-#ifndef CPPLRU_LRU_HASH_H_
-#define CPPLRU_LRU_HASH_H_
+#pragma once
 
-#endif //CPPLRU_LRU_HASH_H_
+#include "node.h"
+
+constexpr int DEFAULT_HASH_TABLE_CAPACITY = 1000;
+
+template<typename K>
+class LRUHashTable {
+private:
+    std::hash<K> hasher;
+	int capacity;
+	std::vector<K> hashtable;
+
+public:
+	explicit LRUHashTable(int capacity = DEFAULT_HASH_TABLE_CAPACITY): capacity(capacity),
+	hashtable(capacity){};
+
+	size_t hash_node(PrimitiveNode<K>& node);
+    size_t hash(K& key);
+};

@@ -1,0 +1,53 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Brace wrapping style similar to Stroustrup
+BraceWrapping:
+  AfterClass: true          # Allman style for class
+  AfterStruct: true         # Allman style for struct
+  AfterEnum: true           # Allman style for enum
+  AfterFunction: true       # Allman style for function
+  AfterNamespace: false     # K&R style for namespace (attached)
+  BeforeElse: true          # else on new line
+  BeforeCatch: true         # catch on new line
+  IndentBraces: false
+
+BreakBeforeBraces: Custom
+
+AllowShortFunctionsOnASingleLine: Inline
+
+PointerAlignment: Left
+
+SpaceAfterCStyleCast: true
+SpaceBeforeParens: ControlStatements
+
+ColumnLimit: 80
+
+AlignAfterOpenBracket: DontAlign
+BinPackParameters: true
+BinPackArguments: true
+
+SpacesInParentheses: false
+
+IndentCaseLabels: true
+ContinuationIndentWidth: 8
+
+# Break long function signatures onto multiple lines with parameters indented nicely
+ConstructorInitializerAllOnOneLineOrOnePerLine: True
+ConstructorInitializerIndentWidth: 4
+
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+
+# Spaces inside container literals
+SpacesInContainerLiterals: true
+
+ReflowComments: true
+
+# Keep empty lines only up to 1
+MaxEmptyLinesToKeep: 1
+---

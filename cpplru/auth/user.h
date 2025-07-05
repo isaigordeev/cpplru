@@ -4,15 +4,23 @@
 
 #pragma once
 
-#include "lru/lru.h"
+#include "lru.h"
 #include <string>
 
-<> class User
+class AbstractUser
 {
     int id;
     std::string name;
     std::string email;
-    LRU lru;
 
-    User
+    AbstractUser() : id(0), name(""), email("") {}
+};
+
+template <typename K> class User: public AbstractUser
+{
+
+    LRU<K> lru;
+
+    User(): AbstractUser() {};
+
 };

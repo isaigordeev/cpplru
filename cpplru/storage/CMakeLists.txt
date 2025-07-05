@@ -5,6 +5,6 @@ set(STORAGE_SOURCES
         record.h
 )
 
-add_library(storage STATIC ${STORAGE_SOURCE})
+add_library(storage STATIC ${STORAGE_SOURCES})
 
 target_include_directories(storage PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

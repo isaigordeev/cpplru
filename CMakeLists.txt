@@ -28,36 +28,33 @@ set(SOURCES_C
         lib/clru/hash.c
         lib/clru/chain.c
         lib/clru/node.c
-        )
+)
 
 set(TEST_C_CPP
         tests/tests_c_legacy_main.cpp  # C++ test that uses C implementation
-        )
+)
 
 add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
 
 target_include_directories(clru_test PRIVATE
         ${CMAKE_SOURCE_DIR}/lib/clru
-        )
+)
 
 target_compile_options(clru_test PRIVATE -fsanitize=address -g)
 target_link_options(clru_test PRIVATE -fsanitize=address)
 
 
 # === Executable for testing C++ version ===
-set(CPP_LRU
-        cpplru/lru/lru.cpp     # Your C++ implementation of LRU
-        cpplru/lru/chain.cpp cpplru/lru/chain.h cpplru/lru/hash.cpp cpplru/lru/hash.h cpplru/lru/node.cpp cpplru/lru/node.h)
+add_subdirectory(cpplru/lru)
 
-set(TEST_CPP
-        tests/tests_main.cpp # Your C++ test for the C++ LRU
-        )
+add_executable(main ${LRU_SOURCES}
+        cpplru/main.cpp)
 
-add_executable(cpplru ${CPP_LRU} ${TEST_CPP})
-
-target_include_directories(cpplru PRIVATE
+target_include_directories(main PRIVATE
         ${CMAKE_SOURCE_DIR}/cpplru/lru
-        )
+)
 
-target_compile_options(cpplru PRIVATE -fsanitize=address -g)
-target_link_options(cpplru PRIVATE -fsanitize=address)
+target_compile_options(main PRIVATE -fsanitize=address -g)
+target_link_options(main PRIVATE -fsanitize=address)
+
+target_link_libraries(main PRIVATE lru)

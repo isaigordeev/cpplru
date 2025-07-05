@@ -4,4 +4,4 @@
 
 #include "chain.h"
 
-template <typename K> LRUCacheChain<K>::LRUCacheChain(int capacity)
+// template <typename K> LRUCacheChain<K>::LRUCacheChain(int capacity)

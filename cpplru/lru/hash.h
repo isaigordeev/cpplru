@@ -17,7 +17,7 @@ template <typename K> class LRUHashTable
 
   public:
     explicit LRUHashTable(int capacity = DEFAULT_HASH_TABLE_CAPACITY)
-        : capacity(capacity), hashtable(capacity){};
+        : capacity(capacity), hashtable(capacity) {};
 
     size_t hash(const K& key) const { return hasher(key) % capacity; }
 

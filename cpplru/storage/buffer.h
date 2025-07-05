@@ -9,8 +9,6 @@
 
 class Buffer
 {
-  private:
-    data_dict:
 };
 
 #endif // BUFFER_H

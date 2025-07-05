@@ -30,14 +30,14 @@ template <typename K> class LRU
           lruHashTable(
                   std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
           lruChain(std::make_unique<LRUCacheChain<K>>(
-                  lruConfig.chain_capacity)){};
+                  lruConfig.chain_capacity)) {};
 
     explicit LRU(const LRUConfig& lruConfig)
         : lruConfig(lruConfig),
           lruHashTable(
                   std::make_unique<LRUHashTable<K>>(lruConfig.hash_capacity)),
           lruChain(std::make_unique<LRUCacheChain<K>>(
-                  lruConfig.chain_capacity)){};
+                  lruConfig.chain_capacity)) {};
 
     void put(const std::shared_ptr<PrimitiveNode<K>>& node)
     {

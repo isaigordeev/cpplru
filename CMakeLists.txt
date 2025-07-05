@@ -14,15 +14,16 @@ execute_process(
 )
 set(CMAKE_OSX_SYSROOT ${MACOS_SDK_PATH})
 
-# Add include directories
-
+# Enable testing option
 option(BUILD_TESTING "Build tests" ON)
+
 if (BUILD_TESTING)
     enable_testing()
-    add_subdirectory(tests)
 endif ()
 
-# === Executable for testing C version ===
+# ===============================
+# C version library and testing
+# ===============================
 set(SOURCES_C
         lib/clru/lru.c
         lib/clru/hash.c
@@ -35,26 +36,46 @@ set(TEST_C_CPP
 )
 
 add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
-
-target_include_directories(clru_test PRIVATE
-        ${CMAKE_SOURCE_DIR}/lib/clru
-)
-
+target_include_directories(clru_test PRIVATE ${CMAKE_SOURCE_DIR}/lib/clru)
 target_compile_options(clru_test PRIVATE -fsanitize=address -g)
 target_link_options(clru_test PRIVATE -fsanitize=address)
 
-
-# === Executable for testing C++ version ===
+# ===============================
+# Add C++ libraries
+# ===============================
 add_subdirectory(cpplru/lru)
+add_subdirectory(cpplru/storage)
+add_subdirectory(cpplru/auth)
 
-add_executable(main ${LRU_SOURCES}
-        cpplru/main.cpp)
+# ===============================
+# Main executable for C++
+# ===============================
+add_executable(main
+        cpplru/main.cpp
+        ${LRU_SOURCES}
+        ${AUTH_SOURCES}
+        ${STORAGE_SOURCES}
+)
 
 target_include_directories(main PRIVATE
         ${CMAKE_SOURCE_DIR}/cpplru/lru
+        ${CMAKE_SOURCE_DIR}/cpplru/auth
+        ${CMAKE_SOURCE_DIR}/cpplru/storage
 )
 
 target_compile_options(main PRIVATE -fsanitize=address -g)
 target_link_options(main PRIVATE -fsanitize=address)
+target_link_libraries(main PRIVATE lru auth storage)
 
-target_link_libraries(main PRIVATE lru)
+# ===============================
+# Tests for C++ libraries
+# ===============================
+
+
+if (BUILD_TESTING)
+    add_subdirectory(tests)
+
+    target_include_directories(cpplru_tests PRIVATE ${CMAKE_SOURCE_DIR}/cpplru)
+    # Assuming cpplru_tests is defined in tests/CMakeLists.txt
+    # Apply sanitizer options to tests if target is defined here or in tests CMakeLists
+endif ()

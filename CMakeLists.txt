@@ -77,5 +77,4 @@ if (BUILD_TESTING)
 
     target_include_directories(cpplru_tests PRIVATE ${CMAKE_SOURCE_DIR}/cpplru)
     # Assuming cpplru_tests is defined in tests/CMakeLists.txt
-    # Apply sanitizer options to tests if target is defined here or in tests CMakeLists
 endif ()

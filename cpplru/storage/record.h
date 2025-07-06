@@ -2,7 +2,16 @@
 // Created by Isai GORDEEV on 01/07/2025.
 //
 
-#ifndef RECORD_H
-#define RECORD_H
+#pragma once
 
-#endif //RECORD_H
+struct PrimitiveRecord
+{
+    int idx;
+
+    bool operator==(const PrimitiveRecord& other) const
+    {
+        return idx == other.idx;
+    }
+    PrimitiveRecord() : idx(0) {};
+    PrimitiveRecord(int idx) : idx(idx) {};
+};

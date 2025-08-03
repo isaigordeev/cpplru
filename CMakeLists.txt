@@ -29,11 +29,11 @@ set(SOURCES_C
         lib/clru/hash.c
         lib/clru/chain.c
         lib/clru/node.c
-)
+        )
 
 set(TEST_C_CPP
-        tests/tests_c_legacy_main.cpp  # C++ test that uses C implementation
-)
+        tests/clru/clru_test.cpp  # C++ test that uses C implementation
+        )
 
 add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
 target_include_directories(clru_test PRIVATE ${CMAKE_SOURCE_DIR}/lib/clru)
@@ -55,13 +55,13 @@ add_executable(main
         ${LRU_SOURCES}
         ${AUTH_SOURCES}
         ${STORAGE_SOURCES}
-)
+        )
 
 target_include_directories(main PRIVATE
         ${CMAKE_SOURCE_DIR}/cpplru/lru
         ${CMAKE_SOURCE_DIR}/cpplru/auth
         ${CMAKE_SOURCE_DIR}/cpplru/storage
-)
+        )
 
 target_compile_options(main PRIVATE -fsanitize=address -g)
 target_link_options(main PRIVATE -fsanitize=address)

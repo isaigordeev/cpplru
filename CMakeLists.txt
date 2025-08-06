@@ -46,6 +46,7 @@ target_link_options(clru_test PRIVATE -fsanitize=address)
 add_subdirectory(cpplru/lru)
 add_subdirectory(cpplru/storage)
 add_subdirectory(cpplru/auth)
+add_subdirectory(cpplru/conc)
 
 # ===============================
 # Main executable for C++
@@ -55,17 +56,19 @@ add_executable(main
         ${LRU_SOURCES}
         ${AUTH_SOURCES}
         ${STORAGE_SOURCES}
+        ${CONC_SOURCES}
 )
 
 target_include_directories(main PRIVATE
         ${CMAKE_SOURCE_DIR}/cpplru/lru
         ${CMAKE_SOURCE_DIR}/cpplru/auth
         ${CMAKE_SOURCE_DIR}/cpplru/storage
+        ${CMAKE_SOURCE_DIR}/cpplru/conc
 )
 
 target_compile_options(main PRIVATE -fsanitize=address -g)
 target_link_options(main PRIVATE -fsanitize=address)
-target_link_libraries(main PRIVATE lru auth storage)
+target_link_libraries(main PRIVATE lru auth storage conc)
 
 # ===============================
 # Tests for C++ libraries

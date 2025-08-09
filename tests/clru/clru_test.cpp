@@ -1,3 +1,7 @@
+//
+// Created by Isai Gordeev on 03/08/2025.
+//
+
 #include <iostream>
 
 extern "C" {
@@ -19,5 +23,4 @@ int main()
     // Cleanup
     lru_free(lru);
 
-    return EXIT_SUCCESS;
-}
+    return EX

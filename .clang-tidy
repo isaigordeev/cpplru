@@ -12,7 +12,7 @@ Checks: >
   -readability-magic-numbers
 
 WarningsAsErrors: ''
-HeaderFilterRegex: '.*'
+HeaderFilterRegex: '^(cpplru|tests)/.*'
 
 AnalyzeTemporaryDtors: true
 FormatStyle: file

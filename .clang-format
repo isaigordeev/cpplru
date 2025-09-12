@@ -1,10 +1,11 @@
-# .clang-format configuration file  
+# .clang-format configuration file
 ---
 Language: Cpp
-BasedOnStyle: LLVM
-IndentWidth: 4
+BasedOnStyle: Google
+IndentWidth: 2    
 TabWidth: 4
 UseTab: Never
+
 BraceWrapping:
   AfterClass: true
   AfterStruct: true
@@ -13,6 +14,7 @@ BraceWrapping:
   AfterNamespace: false
   BeforeElse: true
   BeforeCatch: true
+
 BreakBeforeBraces: Custom
 AllowShortFunctionsOnASingleLine: Inline
 PointerAlignment: Left
@@ -33,4 +35,3 @@ AllowShortBlocksOnASingleLine: Never
 SpacesInContainerLiterals: true
 ReflowComments: true
 MaxEmptyLinesToKeep: 1
-...  

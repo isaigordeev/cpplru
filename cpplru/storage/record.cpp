@@ -6,8 +6,6 @@
 
 #include <vector>
 
-#pragma once
-
 struct Record
 {
     std::vector<char> payload;

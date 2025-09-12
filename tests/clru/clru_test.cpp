@@ -23,4 +23,5 @@ int main()
     // Cleanup
     lru_free(lru);
 
-    return EX
+    return 0;
+}

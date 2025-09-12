@@ -12,6 +12,6 @@ struct PrimitiveRecord
     {
         return idx == other.idx;
     }
-    PrimitiveRecord() : idx(0) {};
-    PrimitiveRecord(int idx) : idx(idx) {};
+    PrimitiveRecord() : idx(0){};
+    explicit PrimitiveRecord(int idx) : idx(idx){};
 };

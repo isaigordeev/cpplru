@@ -2,13 +2,14 @@
 // Created by Isai GORDEEV on 06/08/2025.
 //
 
+#include "concurrency/mutex.h" // Adjust path if needed
+#include <atomic>
 #include <gtest/gtest.h>
 #include <thread>
 #include <vector>
-#include <atomic>
-#include "conc/mutex.h" // Adjust path if needed
 
-TEST(MutexTest, LockUnlockSingleThread) {
+TEST(MutexTest, LockUnlockSingleThread)
+{
     Mutex mtx;
 
     EXPECT_NO_THROW({
@@ -17,7 +18,8 @@ TEST(MutexTest, LockUnlockSingleThread) {
     });
 }
 
-TEST(MutexTest, LockUnlockWithStdLockGuard) {
+TEST(MutexTest, LockUnlockWithStdLockGuard)
+{
     Mutex mtx;
 
     EXPECT_NO_THROW({
@@ -27,7 +29,8 @@ TEST(MutexTest, LockUnlockWithStdLockGuard) {
     // Mutex should be unlocked here
 }
 
-TEST(MutexTest, MutexEnsuresMutualExclusion) {
+TEST(MutexTest, MutexEnsuresMutualExclusion)
+{
     Mutex mtx;
     int shared_counter = 0;
 
@@ -47,7 +50,8 @@ TEST(MutexTest, MutexEnsuresMutualExclusion) {
     EXPECT_EQ(shared_counter, 20000);
 }
 
-TEST(MutexTest, ContentionTest) {
+TEST(MutexTest, ContentionTest)
+{
     Mutex mtx;
     std::atomic<int> active_threads{0};
     const int num_threads = 10;
@@ -57,8 +61,10 @@ TEST(MutexTest, ContentionTest) {
         for (int i = 0; i < iterations; ++i) {
             mtx.Lock();
             int before = active_threads.fetch_add(1);
-            EXPECT_EQ(before, 0) << "More than one thread inside critical section!";
-            std::this_thread::sleep_for(std::chrono::microseconds(1)); // Simulate work
+            EXPECT_EQ(before, 0)
+                    << "More than one thread inside critical section!";
+            std::this_thread::sleep_for(
+                    std::chrono::microseconds(1)); // Simulate work
             active_threads.store(0);
             mtx.Unlock();
         }

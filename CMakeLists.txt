@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+
+
 # Get macOS SDK path dynamically
 execute_process(
         COMMAND xcrun --sdk macosx --show-sdk-path
@@ -46,7 +50,7 @@ target_link_options(clru_test PRIVATE -fsanitize=address)
 add_subdirectory(cpplru/lru)
 add_subdirectory(cpplru/storage)
 add_subdirectory(cpplru/auth)
-add_subdirectory(cpplru/conc)
+add_subdirectory(cpplru/concurrency)
 
 # ===============================
 # Main executable for C++

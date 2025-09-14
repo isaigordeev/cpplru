@@ -9,4 +9,4 @@ set(STORAGE_SOURCES
 
 add_library(storage STATIC ${STORAGE_SOURCES})
 
-target_include_directories(storage PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(storage PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})

@@ -6,9 +6,13 @@
 
 #include "page.h"
 
+namespace storage {
+
 struct BufferPage {
   PrimitivePage page;
   bool dirty = false;
   int pinCount = 0;
   int pageId = -1;
 };
+
+}  // namespace storage

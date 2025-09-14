@@ -25,17 +25,17 @@ class BufferTest : public ::testing::Test {
 
 // Test writing and reading a single page
 TEST_F(BufferTest, WriteAndReadPage) {
-  DiskManager dm(filename);
-  BufferPool buffer(&dm, 2);
+  storage::DiskManager dm(filename);
+  storage::BufferPool buffer(&dm, 2);
 
-  BufferPage* p0 = buffer.fetchPage(0);
+  storage::BufferPage* p0 = buffer.fetchPage(0);
   for (int i = 0; i < 5; i++) {
-    p0->page.insertRecord(PrimitiveRecord(i));
+    p0->page.insertRecord(storage::PrimitiveRecord(i));
   }
   buffer.markDirty(0);
   buffer.flushAll();
 
-  BufferPage* reload = buffer.fetchPage(0);
+  storage::BufferPage* reload = buffer.fetchPage(0);
   ASSERT_EQ(reload->page.size, 5);
   for (int i = 0; i < 5; i++) {
     EXPECT_EQ(reload->page.data[i].idx, i);
@@ -44,11 +44,11 @@ TEST_F(BufferTest, WriteAndReadPage) {
 
 // Test LRU eviction policy
 TEST_F(BufferTest, LRUEviction) {
-  DiskManager dm(filename);
-  BufferPool buffer(&dm, 2);  // max 2 pages
+  storage::DiskManager dm(filename);
+  storage::BufferPool buffer(&dm, 2);  // max 2 pages
 
-  BufferPage* p0 = buffer.fetchPage(0);
-  BufferPage* p1 = buffer.fetchPage(1);
+  storage::BufferPage* p0 = buffer.fetchPage(0);
+  storage::BufferPage* p1 = buffer.fetchPage(1);
   buffer.markDirty(0);
   buffer.markDirty(1);
 
@@ -56,26 +56,26 @@ TEST_F(BufferTest, LRUEviction) {
   buffer.fetchPage(0);
 
   // Fetch a new page, should evict p1
-  BufferPage* p2 = buffer.fetchPage(2);
+  storage::BufferPage* p2 = buffer.fetchPage(2);
   buffer.markDirty(2);
 
   // p1 should be evicted and reloaded correctly
-  BufferPage* p1Reloaded = buffer.fetchPage(1);
+  storage::BufferPage* p1Reloaded = buffer.fetchPage(1);
   EXPECT_EQ(p1Reloaded->pageId, 1);
 }
 
 // Test flushing dirty pages
 TEST_F(BufferTest, DirtyPageFlush) {
-  DiskManager dm(filename);
-  BufferPool buffer(&dm, 2);
+  storage::DiskManager dm(filename);
+  storage::BufferPool buffer(&dm, 2);
 
-  BufferPage* p0 = buffer.fetchPage(0);
-  p0->page.insertRecord(PrimitiveRecord(42));
+  storage::BufferPage* p0 = buffer.fetchPage(0);
+  p0->page.insertRecord(storage::PrimitiveRecord(42));
   buffer.markDirty(0);
   buffer.flushAll();
 
   // Re-read directly from disk
-  PrimitivePage page = dm.readPage(0);
+  storage::PrimitivePage page = dm.readPage(0);
   ASSERT_EQ(page.size, 1);
   EXPECT_EQ(page.data[0].idx, 42);
 }

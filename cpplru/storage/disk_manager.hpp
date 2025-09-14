@@ -9,6 +9,8 @@
 
 #include "page.h"
 
+namespace storage {
+
 class DiskManager {
  public:
   explicit DiskManager(const std::string& file_name) : fileName(file_name) {}
@@ -47,3 +49,5 @@ class DiskManager {
  private:
   std::string fileName;
 };
+
+}  // namespace storage

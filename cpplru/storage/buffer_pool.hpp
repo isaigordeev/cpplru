@@ -10,6 +10,8 @@
 #include "buffer_page.h"
 #include "disk_manager.hpp"
 
+namespace storage {
+
 class BufferPool {
  public:
   BufferPool(DiskManager* dm, size_t pool_size)
@@ -78,3 +80,5 @@ class BufferPool {
     std::cerr << "Buffer pool full, no page to evict!\n";
   }
 };
+
+}  // namespace storage

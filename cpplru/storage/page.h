@@ -9,6 +9,8 @@
 
 #include "record.h"
 
+namespace storage {
+
 class RawPage {
   // ——————————————————————————————————————————————————————————————
   //   PUBLIC TYPES & CONSTANTS
@@ -40,3 +42,5 @@ class PrimitivePage {
     return false;
   }
 };
+
+}  // namespace storage

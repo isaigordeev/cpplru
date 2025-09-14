@@ -4,14 +4,16 @@
 
 #pragma once
 
-struct PrimitiveRecord
-{
-    int idx;
+namespace storage {
 
-    bool operator==(const PrimitiveRecord& other) const
-    {
-        return idx == other.idx;
-    }
-    PrimitiveRecord() : idx(0){};
-    explicit PrimitiveRecord(int idx) : idx(idx){};
+struct PrimitiveRecord {
+  int idx;
+
+  bool operator==(const PrimitiveRecord& other) const {
+    return idx == other.idx;
+  }
+  PrimitiveRecord() : idx(0){};
+  explicit PrimitiveRecord(int idx) : idx(idx){};
 };
+
+}  // namespace storage

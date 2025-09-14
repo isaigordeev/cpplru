@@ -14,15 +14,15 @@ class Mutex
     uint32_t expected = 0;
 
     if (locked_.compare_exchange_strong(
-                expected, 1, std::memory_order_acquire)) {
+                expected, 1, std::memory_order_seq_cst)) {
       return;
     }
 
     while (true) {
       expected = 0;
-      if (locked_.load(std::memory_order_relaxed) == 0) {
+      if (locked_.load(std::memory_order_seq_cst) == 0) {
         if (locked_.compare_exchange_strong(
-                    expected, 1, std::memory_order_acquire)) {
+                    expected, 1, std::memory_order_seq_cst)) {
           return;
         }
       }
@@ -31,7 +31,7 @@ class Mutex
     }
   }
 
-  void Unlock() { locked_.store(0, std::memory_order_release); }
+  void Unlock() { locked_.store(0, std::memory_order_seq_cst); }
 
   // BasicLockable
   void lock() { Lock(); }

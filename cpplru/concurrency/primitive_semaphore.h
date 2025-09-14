@@ -1,3 +1,7 @@
+//
+// Created by Isai GORDEEV on 14/09/2025.
+//
+
 #pragma once
 #include <condition_variable>
 #include <mutex>

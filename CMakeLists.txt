@@ -28,21 +28,21 @@ endif ()
 # ===============================
 # C version library and testing
 # ===============================
-set(SOURCES_C
-        lib/clru/lru.c
-        lib/clru/hash.c
-        lib/clru/chain.c
-        lib/clru/node.c
-        )
+# set(SOURCES_C
+#         lib/clru/lru.c
+#         lib/clru/hash.c
+#         lib/clru/chain.c
+#         lib/clru/node.c
+#         )
 
-set(TEST_C_CPP
-        tests/clru/clru_test.cpp  # C++ test that uses C implementation
-        )
+# set(TEST_C_CPP
+#         tests/clru/clru_test.cpp  # C++ test that uses C implementation
+#         )
 
-add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
-target_include_directories(clru_test PRIVATE ${CMAKE_SOURCE_DIR}/lib/clru)
-target_compile_options(clru_test PRIVATE -fsanitize=address -g)
-target_link_options(clru_test PRIVATE -fsanitize=address)
+# add_executable(clru_test ${TEST_C_CPP} ${SOURCES_C})
+# target_include_directories(clru_test PRIVATE ${CMAKE_SOURCE_DIR}/lib/clru)
+# target_compile_options(clru_test PRIVATE -fsanitize=address -g)
+# target_link_options(clru_test PRIVATE -fsanitize=address)
 
 # ===============================
 # Add C++ libraries

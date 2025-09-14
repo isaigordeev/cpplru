@@ -1,6 +1,6 @@
 set(STORAGE_SOURCES
-        buffer.cpp
-        buffer.h
+        buffer_page.cpp
+        buffer_page.h
         record.cpp
         record.h
         page.cpp

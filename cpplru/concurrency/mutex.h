@@ -6,26 +6,21 @@
 #include <atomic>
 #include <thread>
 
-class Mutex
-{
+class Mutex {
  public:
-  void Lock()
-  {
+  void Lock() {
     uint32_t expected = 0;
 
-    if (locked_.compare_exchange_strong(expected, 1, std::memory_order_acquire))
-    {
+    if (locked_.compare_exchange_strong(expected, 1,
+                                        std::memory_order_acquire)) {
       return;
     }
 
-    while (true)
-    {
+    while (true) {
       expected = 0;
-      if (locked_.load(std::memory_order_relaxed) == 0)
-      {
-        if (locked_.compare_exchange_strong(
-                    expected, 1, std::memory_order_acquire))
-        {
+      if (locked_.load(std::memory_order_relaxed) == 0) {
+        if (locked_.compare_exchange_strong(expected, 1,
+                                            std::memory_order_acquire)) {
           return;
         }
       }

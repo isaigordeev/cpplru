@@ -44,39 +44,9 @@ endif ()
 # target_compile_options(clru_test PRIVATE -fsanitize=address -g)
 # target_link_options(clru_test PRIVATE -fsanitize=address)
 
-# ===============================
-# Add C++ libraries
-# ===============================
-add_subdirectory(cpplru/lru)
-add_subdirectory(cpplru/storage)
-add_subdirectory(cpplru/auth)
-add_subdirectory(cpplru/concurrency)
 
-# ===============================
-# Main executable for C++
-# ===============================
-add_executable(main
-        cpplru/main.cpp
-        ${LRU_SOURCES}
-        ${AUTH_SOURCES}
-        ${STORAGE_SOURCES}
-        ${CONC_SOURCES}
-        )
 
-target_include_directories(main PRIVATE
-        ${CMAKE_SOURCE_DIR}/cpplru/lru
-        ${CMAKE_SOURCE_DIR}/cpplru/auth
-        ${CMAKE_SOURCE_DIR}/cpplru/storage
-        ${CMAKE_SOURCE_DIR}/cpplru/concurrency
-        )
-
-target_compile_options(main PRIVATE -fsanitize=address -g)
-target_link_options(main PRIVATE -fsanitize=address)
-target_link_libraries(main PRIVATE lru auth storage concurrency)
-
-# ===============================
-# Tests for C++ libraries
-# ===============================
+add_subdirectory(cpplru)
 
 
 if (BUILD_TESTING)

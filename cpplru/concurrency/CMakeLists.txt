@@ -1,4 +1,4 @@
-add_library(conc INTERFACE)
+add_library(concurrency INTERFACE)
 
-target_link_libraries(conc INTERFACE lru)
-target_include_directories(conc INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(concurrency INTERFACE lru)
+target_include_directories(concurrency INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

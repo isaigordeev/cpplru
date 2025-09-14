@@ -11,7 +11,8 @@ class SemaphoreBase {
   void Release() { static_cast<Derived*>(this)->ReleaseImpl(); };
 };
 
-class PrimitiveClassicSemaphore {
+class PrimitiveClassicSemaphore
+    : public SemaphoreBase<PrimitiveClassicSemaphore> {
  public:
   explicit PrimitiveClassicSemaphore(size_t permits = 0) : permits_(permits){};
 
@@ -34,7 +35,7 @@ class PrimitiveClassicSemaphore {
   std::condition_variable cv_;
 };
 
-class PrimitiveSpinSemaphore : SemaphoreBase<PrimitiveSpinSemaphore> {
+class PrimitiveSpinSemaphore : public SemaphoreBase<PrimitiveSpinSemaphore> {
  public:
   void AcquireImpl() {
     size_t expected;

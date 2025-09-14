@@ -67,12 +67,12 @@ target_include_directories(main PRIVATE
         ${CMAKE_SOURCE_DIR}/cpplru/lru
         ${CMAKE_SOURCE_DIR}/cpplru/auth
         ${CMAKE_SOURCE_DIR}/cpplru/storage
-        ${CMAKE_SOURCE_DIR}/cpplru/conc
+        ${CMAKE_SOURCE_DIR}/cpplru/concurrency
         )
 
 target_compile_options(main PRIVATE -fsanitize=address -g)
 target_link_options(main PRIVATE -fsanitize=address)
-target_link_libraries(main PRIVATE lru auth storage conc)
+target_link_libraries(main PRIVATE lru auth storage concurrency)
 
 # ===============================
 # Tests for C++ libraries

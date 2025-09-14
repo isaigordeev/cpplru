@@ -16,10 +16,10 @@ FetchContent_MakeAvailable(googletest)
 # ----------------------------
 # Build C library as static library
 # ----------------------------
-file(GLOB CLRU_SOURCES "${CMAKE_SOURCE_DIR}/lib/clru/*.c")
+# file(GLOB CLRU_SOURCES "${CMAKE_SOURCE_DIR}/lib/clru/*.c")
 
-add_library(clru STATIC ${CLRU_SOURCES})
-target_include_directories(clru PUBLIC "${CMAKE_SOURCE_DIR}/lib/clru")
+# add_library(clru STATIC ${CLRU_SOURCES})
+# target_include_directories(clru PUBLIC "${CMAKE_SOURCE_DIR}/lib/clru")
 
 
 # ----------------------------
@@ -65,7 +65,7 @@ endforeach()
 
 # Link C++ libraries + GTest
 target_link_libraries(cpplru_tests PRIVATE
-    lru auth storage conc  # C++ libraries from top-level
+    lru auth storage concurrency  # C++ libraries from top-level
     GTest::gtest_main
 )
 

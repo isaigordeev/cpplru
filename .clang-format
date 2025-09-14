@@ -1,37 +1,7 @@
-# .clang-format configuration file
----
 Language: Cpp
 BasedOnStyle: Google
-IndentWidth: 2    
+IndentWidth: 2
 TabWidth: 4
 UseTab: Never
-
-BraceWrapping:
-  AfterClass: true
-  AfterStruct: true
-  AfterEnum: true
-  AfterFunction: true
-  AfterNamespace: false
-  BeforeElse: true
-  BeforeCatch: true
-
-BreakBeforeBraces: Allman
-AllowShortFunctionsOnASingleLine: Inline
-PointerAlignment: Left
-SpaceAfterCStyleCast: true
-SpaceBeforeParens: ControlStatements
 ColumnLimit: 80
-AlignAfterOpenBracket: DontAlign
-BinPackParameters: true
-BinPackArguments: true
-SpacesInParentheses: false
-IndentCaseLabels: true
-ContinuationIndentWidth: 8
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
-ConstructorInitializerIndentWidth: 4
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
-AllowShortBlocksOnASingleLine: Never
-SpacesInContainerLiterals: true
-ReflowComments: true
-MaxEmptyLinesToKeep: 1
+PointerAlignment: Left

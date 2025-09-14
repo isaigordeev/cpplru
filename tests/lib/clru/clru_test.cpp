@@ -2,26 +2,23 @@
 // Created by Isai Gordeev on 03/08/2025.
 //
 
-#include <iostream>
+#include <gtest/gtest.h>
 
 extern "C" {
-#include "lru.h" // C interface
+#include "lru.h"
 }
 
-int main()
-{
-    std::cout << "Using LRU cache from C in C++!" << std::endl;
+TEST(ClruTest, InsertAndEvict) {
+  LRU* lru = lru_init(2, 10);
 
-    LRU* lru = lru_init(2, 10);
+  lru_put(lru, 6);
+  lru_put(lru, 8);
 
-    lru_put(lru, 6);
-    lru_put(lru, 8);
-    lru_put(lru, 5);
-    lru_put(lru, 6);
-    lru_put(lru, 2);
+  // Example: ensure that size == 2
+  EXPECT_EQ(lru->chain->size, 2);
 
-    // Cleanup
-    lru_free(lru);
+  lru_put(lru, 5);  // should evict something
+  EXPECT_EQ(lru->chain->size, 2);
 
-    return 0;
+  lru_free(lru);
 }

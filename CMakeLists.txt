@@ -81,7 +81,4 @@ target_link_libraries(main PRIVATE lru auth storage conc)
 
 if (BUILD_TESTING)
     add_subdirectory(tests)
-
-    target_include_directories(cpplru_tests PRIVATE ${CMAKE_SOURCE_DIR}/cpplru)
-    # Assuming cpplru_tests is defined in tests/CMakeLists.txt
 endif ()

@@ -6,7 +6,10 @@
 
 #include <vector>
 
-struct Record
-{
-    std::vector<char> payload;
+namespace storage {
+
+struct Record {
+  std::vector<char> payload;
 };
+
+}  // namespace storage
